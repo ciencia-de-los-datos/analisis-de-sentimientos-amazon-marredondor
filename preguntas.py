@@ -21,22 +21,22 @@ def pregunta_01():
     # Lea el archivo `amazon_cells_labelled.tsv` y cree un DataFrame usando pandas.
     # Etiquete la primera columna como `msg` y la segunda como `lbl`. Esta función
     # retorna el dataframe con las dos columnas.
-    df = ____(
-        ____,
-        sep=____,
-        header=____,
-        names=____,
-    )
+    df = pd.read_csv(
+        ruta + 'amazon_cells_labelled.tsv',
+        sep = "\t",
+        header = None,
+        names = ["msg", "lbl"],
+        )
 
     # Separe los grupos de mensajes etiquetados y no etiquetados.
-    df_tagged = ____[____["____"].____()]
-    df_untagged = ____[____["____"].____()]
-
-    x_tagged = ____["____"]
-    y_tagged = ____["____"]
-
-    x_untagged = ____["____"]
-    y_untagged = ____["____"]
+    df_tagged = df[(df["lbl"] >= 0)]
+    df_untagged = df[(df["lbl"].isna())]
+    
+    x_tagged = df_tagged["msg"]
+    y_tagged = df_tagged["lbl"]
+    
+    x_untagged = df_untagged["msg"]
+    y_untagged = df_untagged["lbl"]
 
     # Retorne los grupos de mensajes
     return x_tagged, y_tagged, x_untagged, y_untagged
