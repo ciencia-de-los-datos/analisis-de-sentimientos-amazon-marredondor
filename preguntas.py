@@ -22,7 +22,7 @@ def pregunta_01():
     # Etiquete la primera columna como `msg` y la segunda como `lbl`. Esta función
     # retorna el dataframe con las dos columnas.
     df = pd.read_csv(
-        ruta + 'amazon_cells_labelled.tsv',
+        'amazon_cells_labelled.tsv',
         sep = "\t",
         header = None,
         names = ["msg", "lbl"],
