@@ -10,6 +10,7 @@ Naive Bayes para determinar el sentimiento de un comentario.
 """
 import numpy as np
 import pandas as pd
+from nltk.stem.porter import PorterStemmer
 
 
 def pregunta_01():
@@ -74,13 +75,18 @@ def pregunta_03():
     """
     # Importe el stemmer de Porter
     # Importe CountVectorizer
-    from ____ import ____
+    from sklearn.feature_extraction.text import CountVectorizer
 
     # Cree un stemeer que use el algoritmo de Porter.
-    stemmer = ____
+    stemmer = PorterStemmer()
 
     # Cree una instancia del analizador de palabras (build_analyzer)
-    analyzer = ____().____()
+    vectorizer = CountVectorizer(
+                analyzer="word",
+                token_pattern=r"(?u)\b[a-zA-Z][a-zA-Z]+\b", # solo palabras caracteres alfabéticos
+                lowercase=True                              # poner todo en minúscula
+                )
+    analyzer = vectorizer.build_analyzer()
 
     # Retorne el analizador de palabras
     return lambda x: (stemmer.stem(w) for w in analyzer(x))
